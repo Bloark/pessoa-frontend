@@ -10,10 +10,7 @@ const Home = () => {
       <ul>
         <li>
           <Link to="/pessoas">Lista de Pessoas</Link>
-        </li>
-        <li>
-          <Link to="/pessoas/5">Detalhes da Pessoa</Link>
-        </li>
+        </li>       
         <li>
           <Link to="/pessoas/novo">Formulário de Pessoa</Link>
         </li>

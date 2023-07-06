@@ -1,0 +1,53 @@
+.pessoa-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .pessoa-form__title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .pessoa-form__form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .pessoa-form__field {
+    margin-bottom: 15px;
+  }
+  
+  .pessoa-form__label {
+    font-weight: bold;
+  }
+  
+  .pessoa-form__input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .pessoa-form__submit {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .pessoa-form__submit:hover {
+    background-color: #45a049;
+  }
+  
+  .pessoa-form__submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './components/NavBar/Home';
-import PessoaList from './components/PessoaList';
+import PessoaList from './components/Formularios/Listar/PessoaList';
 import PessoaDetails from './components/PessoaDetails';
 import PessoaForm from './components/Formularios/Adicionar/PessoaForm';
 import UpdatePessoa from './components/Formularios/Update/UpdatePessoa'; // Importe o componente UpdatePessoa aqui
