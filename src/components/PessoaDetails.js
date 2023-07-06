@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
-const PessoaDetails = ({ match }) => {
+import { useParams } from 'react-router-dom';
+
+const PessoaDetails = () => {
   const [pessoa, setPessoa] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchPessoa = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/pessoas/${match.params.id}`);
+        const response = await axios.get(`http://localhost:8080/pessoas/${id}`);
         setPessoa(response.data);
       } catch (error) {
         console.error('Erro ao carregar detalhes da pessoa:', error);
@@ -16,7 +18,7 @@ const PessoaDetails = ({ match }) => {
     };
 
     fetchPessoa();
-  }, [match.params.id]);
+  }, [id]);
 
   if (!pessoa) {
     return <div>Carregando...</div>;
@@ -34,13 +36,4 @@ const PessoaDetails = ({ match }) => {
   );
 };
 
-PessoaDetails.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
-
 export default PessoaDetails;
-
