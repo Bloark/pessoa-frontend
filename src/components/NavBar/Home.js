@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import estilos from './NavBar.module.scss';
 
 const Home = () => {
-  return (
+  return (<nav className={estilos.Link}>
     <div>
       <h2>Página Inicial</h2>
       <p>Bem-vindo à página inicial do aplicativo.</p>
@@ -21,6 +22,7 @@ const Home = () => {
         </li>
       </ul>
     </div>
+    </nav>
   );
 };
 

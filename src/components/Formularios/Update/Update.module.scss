@@ -1,0 +1,55 @@
+// styles.scss
+
+// Defina as variáveis de cores e estilos globais
+$cor-primaria: #007bff;
+$cor-secundaria: #ff0026;
+$cor-fundo: #f8f8f8;
+$cor-texto: #333333;
+$espacamento: 1rem;
+
+// Estilize o componente UpdatePessoa
+.update-pessoa {
+  background-color: $cor-fundo;
+  padding: $espacamento;
+  border-radius: 4px;
+
+  h2 {
+    color: $cor-primaria;
+    margin-bottom: $espacamento;
+  }
+
+  form {
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid $cor-primaria;
+      border-radius: 4px;
+      margin-bottom: $espacamento;
+    }
+
+    button[type="submit"] {
+      background-color: $cor-primaria;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+     button[type="button"] {
+      background-color: $cor-secundaria;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+  }
+}

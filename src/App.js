@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Home from './components/Home';
+import Home from './components/NavBar/Home';
 import PessoaList from './components/PessoaList';
 import PessoaDetails from './components/PessoaDetails';
-import PessoaForm from './components/PessoaForm';
-import UpdatePessoa from './components/UpdatePessoa'; // Importe o componente UpdatePessoa aqui
+import PessoaForm from './components/Formularios/Adicionar/PessoaForm';
+import UpdatePessoa from './components/Formularios/Update/UpdatePessoa'; // Importe o componente UpdatePessoa aqui
 import NotFound from './components/NotFound';
 
 function App() {
