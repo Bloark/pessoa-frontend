@@ -19,8 +19,6 @@ const UpdatePessoa = () => {
   const [mensagemSucesso, setMensagemSucesso] = useState('');
   const [mensagemErro, setMensagemErro] = useState('');
 
- 
-
   useEffect(() => {
     if (id) {
       fetchPessoa();
