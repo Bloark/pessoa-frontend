@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import estilos from './Update.module.scss';
+import Alerta from '../../Alerta/Alerta';
+
 
 const UpdatePessoa = () => {
   const [id, setId] = useState('');
@@ -11,6 +13,12 @@ const UpdatePessoa = () => {
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
+  const [exibirAlerta, setExibirAlerta] = useState(false);
+  const [tipoAlerta, setTipoAlerta] = useState('');
+  const [mensagemSucesso, setMensagemSucesso] = useState('');
+  const [mensagemErro, setMensagemErro] = useState('');
+
+ 
 
   useEffect(() => {
     if (id) {
@@ -29,7 +37,17 @@ const UpdatePessoa = () => {
       setTelefone(pessoa.contatos.find(contato => contato.tipo === 'TELEFONE').valor);
       setEmail(pessoa.contatos.find(contato => contato.tipo === 'EMAIL').valor);
       setCpf(pessoa.cpf);
+      // Exibir o alerta de sucesso
+      setExibirAlerta(true);
+      setTipoAlerta('sucesso');
+      setMensagemSucesso('Pessoa Encontrada');
+      
     } catch (error) {
+       // Exibir o alerta de Erro
+       setExibirAlerta(true);
+       setTipoAlerta('erro');
+       setMensagemErro('Erro ao buscar Pessoa');
+ 
       console.error('Erro ao carregar detalhes da pessoa:', error);
     }
   };
@@ -56,9 +74,23 @@ const UpdatePessoa = () => {
         ],
         cpf,
       });
+
+      // Exibir o alerta de sucesso
+      setExibirAlerta(true);
+      setTipoAlerta('sucesso');
+      setMensagemSucesso('Pessoa atualizada com sucesso!');
+   
+     
       console.log('Pessoa atualizada com sucesso!');
       // Redirecionar ou atualizar a lista de pessoas após a atualização bem-sucedida
     } catch (error) {
+
+      // Exibir o alerta de Erro
+      setExibirAlerta(true);
+      setTipoAlerta('erro');
+      setMensagemErro('Erro ao atualizar pessoa');
+
+
       console.error('Erro ao atualizar pessoa:', error);
     }
   };
@@ -66,9 +98,19 @@ const UpdatePessoa = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:8080/pessoas/${id}`);
+      // Exibir o alerta de sucesso       
+      setExibirAlerta(true);
+      setTipoAlerta('sucesso');
+      setMensagemSucesso('Pessoa deletada com sucesso!');   
+           
       console.log('Pessoa deletada com sucesso!');
       // Redirecionar ou atualizar a lista de pessoas após a exclusão bem-sucedida
     } catch (error) {
+      // Exibir o alerta de Erro
+      setExibirAlerta(true);
+      setTipoAlerta('erro');
+      setMensagemErro('Erro ao deletar pessoa');
+
       console.error('Erro ao deletar pessoa:', error);
     }
   };
@@ -76,6 +118,8 @@ const UpdatePessoa = () => {
   return (
     <div className={estilos["update-pessoa"]}>
       <h2 className={estilos["update-pessoa__title"]}>Atualizar Pessoa</h2>
+      {exibirAlerta && <Alerta tipo={tipoAlerta} mensagem={tipoAlerta === 'sucesso' ? mensagemSucesso : mensagemErro} />}
+
       <form className={estilos["update-pessoa__form"]} onSubmit={handleSubmit}>
         <div className={estilos["update-pessoa__field"]}>
           <label htmlFor="id" className={estilos["update-pessoa__label"]}>ID:</label>
