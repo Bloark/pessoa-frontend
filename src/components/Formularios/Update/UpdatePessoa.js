@@ -26,8 +26,8 @@ const UpdatePessoa = () => {
       setRua(pessoa.endereco.rua);
       setCidade(pessoa.endereco.cidade);
       setEstado(pessoa.endereco.estado);
-      setTelefone(pessoa.contatos[0].telefone);
-      setEmail(pessoa.contatos[0].email);
+      setTelefone(pessoa.contatos.find(contato => contato.tipo === 'TELEFONE').valor);
+      setEmail(pessoa.contatos.find(contato => contato.tipo === 'EMAIL').valor);
       setCpf(pessoa.cpf);
     } catch (error) {
       console.error('Erro ao carregar detalhes da pessoa:', error);
@@ -46,8 +46,12 @@ const UpdatePessoa = () => {
         },
         contatos: [
           {
-            telefone,
-            email,
+            tipo: 'TELEFONE',
+            valor: telefone,
+          },
+          {
+            tipo: 'EMAIL',
+            valor: email,
           },
         ],
         cpf,
@@ -71,79 +75,79 @@ const UpdatePessoa = () => {
 
   return (
     <div className={estilos["update-pessoa"]}>
-    <h2 className={estilos["update-pessoa__title"]}>Atualizar Pessoa</h2>
-    <form className={estilos["update-pessoa__form"]} onSubmit={handleSubmit}>
-      <div className={estilos["update-pessoa__field"]}>
-        <label htmlFor="id" className={estilos["update-pessoa__label"]}>ID:</label>
-        <input
-          type="text"
-          id="id"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          className={estilos["update-pessoa__input"]}
-        />
-        <button type="button" onClick={fetchPessoa} className={estilos["update-pessoa__button"]}>Buscar</button>
-      </div>
-      <div className={estilos["update-pessoa__field"]}>
-        <label htmlFor="nome" className={estilos["update-pessoa__label"]}>Nome:</label>
-        <input
-          type="text"
-          id="nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          className={estilos["update-pessoa__input"]}
-        />
-      </div>
-      <div className={estilos["update-pessoa__field"]}>
-        <label htmlFor="rua" className={estilos["update-pessoa__label"]}>Rua:</label>
-        <input
-          type="text"
-          id="rua"
-          value={rua}
-          onChange={(e) => setRua(e.target.value)}
-          className={estilos["update-pessoa__input"]}
-        />
-      </div>
-      <div className={estilos["update-pessoa__field"]}>
-        <label htmlFor="cidade" className={estilos["update-pessoa__label"]}>Cidade:</label>
-        <input
-          type="text"
-          id="cidade"
-          value={cidade}
-          onChange={(e) => setCidade(e.target.value)}
-          className={estilos["update-pessoa__input"]}
-        />
-      </div>
-      <div className={estilos["update-pessoa__field"]}>
-        <label htmlFor="estado" className={estilos["update-pessoa__label"]}>Estado:</label>
-        <input
-          type="text"
-          id="estado"
-          value={estado}
-          onChange={(e) => setEstado(e.target.value)}
-          className={estilos["update-pessoa__input"]}
-        />
-      </div>
-      <div className={estilos["update-pessoa__field"]}>
-        <label htmlFor="telefone" className={estilos["update-pessoa__label"]}>Telefone:</label>
-        <input
-          type="text"
-          id="telefone"
-          value={telefone}
-          onChange={(e) => setTelefone(e.target.value)}
-          className={estilos["update-pessoa__input"]}
-        />
-      </div>
-      <div className={estilos["update-pessoa__field"]}>
-        <label htmlFor="email" className={estilos["update-pessoa__label"]}>Email:</label>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={estilos["update-pessoa__input"]}
-        />
-      </div>
+      <h2 className={estilos["update-pessoa__title"]}>Atualizar Pessoa</h2>
+      <form className={estilos["update-pessoa__form"]} onSubmit={handleSubmit}>
+        <div className={estilos["update-pessoa__field"]}>
+          <label htmlFor="id" className={estilos["update-pessoa__label"]}>ID:</label>
+          <input
+            type="text"
+            id="id"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            className={estilos["update-pessoa__input"]}
+          />
+          <button type="button" onClick={fetchPessoa} className={estilos["update-pessoa__button"]}>Buscar</button>
+        </div>
+        <div className={estilos["update-pessoa__field"]}>
+          <label htmlFor="nome" className={estilos["update-pessoa__label"]}>Nome:</label>
+          <input
+            type="text"
+            id="nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            className={estilos["update-pessoa__input"]}
+          />
+        </div>
+        <div className={estilos["update-pessoa__field"]}>
+          <label htmlFor="rua" className={estilos["update-pessoa__label"]}>Rua:</label>
+          <input
+            type="text"
+            id="rua"
+            value={rua}
+            onChange={(e) => setRua(e.target.value)}
+            className={estilos["update-pessoa__input"]}
+          />
+        </div>
+        <div className={estilos["update-pessoa__field"]}>
+          <label htmlFor="cidade" className={estilos["update-pessoa__label"]}>Cidade:</label>
+          <input
+            type="text"
+            id="cidade"
+            value={cidade}
+            onChange={(e) => setCidade(e.target.value)}
+            className={estilos["update-pessoa__input"]}
+          />
+        </div>
+        <div className={estilos["update-pessoa__field"]}>
+          <label htmlFor="estado" className={estilos["update-pessoa__label"]}>Estado:</label>
+         <input
+            type="text"
+            id="estado"
+            value={estado}
+            onChange={(e) => setEstado(e.target.value)}
+            className={estilos["update-pessoa__input"]}
+          />
+        </div>
+        <div className={estilos["update-pessoa__field"]}>
+          <label htmlFor="telefone" className={estilos["update-pessoa__label"]}>Telefone:</label>
+          <input
+            type="text"
+            id="telefone"
+            value={telefone}
+            onChange={(e) => setTelefone(e.target.value)}
+            className={estilos["update-pessoa__input"]}
+          />
+        </div>
+        <div className={estilos["update-pessoa__field"]}>
+          <label htmlFor="email" className={estilos["update-pessoa__label"]}>Email:</label>
+          <input
+            type="text"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={estilos["update-pessoa__input"]}
+          />
+        </div>
         <div className={estilos["update-pessoa__field"]}>
           <label htmlFor="cpf" className={estilos["update-pessoa__label"]}>CPF:</label>
           <input
@@ -159,7 +163,6 @@ const UpdatePessoa = () => {
       </form>
     </div>
   );
-
 };
 
 export default UpdatePessoa;

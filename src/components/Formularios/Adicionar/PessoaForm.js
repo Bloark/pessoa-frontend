@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import estilos from './PessoaForm.module.scss';
+import Alerta from '../../Alerta/Alerta.js';
 
 const PessoaForm = () => {
   const [nome, setNome] = useState('');
@@ -10,8 +11,11 @@ const PessoaForm = () => {
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
+  const [exibirAlertaSucesso, setExibirAlertaSucesso] = useState(false);
+  const [exibirAlertaErro, setExibirAlertaErro] = useState(false);
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/pessoas', {
@@ -23,13 +27,21 @@ const PessoaForm = () => {
         },
         contatos: [
           {
-            telefone,
-            email,
+            tipo: 'TELEFONE',
+            valor: telefone,
+          },
+          {
+            tipo: 'EMAIL',
+            valor: email,
           },
         ],
         cpf,
       });
       console.log('Pessoa adicionada:', response.data);
+      
+      // Exibir o alerta de sucesso
+      setExibirAlertaSucesso(true);
+      setExibirAlertaErro(false);
       // Limpar os campos após a adição da pessoa
       setNome('');
       setRua('');
@@ -38,7 +50,12 @@ const PessoaForm = () => {
       setTelefone('');
       setEmail('');
       setCpf('');
+      
+
     } catch (error) {
+      // Exibir o alerta de erro
+      setExibirAlertaErro(true);
+      setExibirAlertaSucesso(false);
       console.error('Erro ao adicionar pessoa:', error);
     }
   };
@@ -46,6 +63,8 @@ const PessoaForm = () => {
   return (
     <div className={estilos['pessoa-form']}>
       <h2 className={estilos['pessoa-form__title']}>Adicionar Pessoa</h2>
+      {exibirAlertaSucesso && <Alerta tipo="sucesso" mensagem="Adicionado com sucesso" />}
+      {exibirAlertaErro && <Alerta tipo="erro" mensagem="Erro ao adicionar pessoa" />}
       <form className={estilos['pessoa-form__form']} onSubmit={handleSubmit}>
         <div className={estilos['pessoa-form__field']}>
           <label htmlFor="nome" className={estilos['pessoa-form__label']}>Nome:</label>
@@ -121,7 +140,6 @@ const PessoaForm = () => {
       </form>
     </div>
   );
-  
 };
 
 export default PessoaForm;
