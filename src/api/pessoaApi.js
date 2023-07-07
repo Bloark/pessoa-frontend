@@ -43,4 +43,14 @@ export const deletarPessoa = async (id) => {
   }
 };
 
+export const buscarPessoa = async (id) => {
+    try {
+      const url = `${API_URL}/${id}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao buscar pessoa:', error);
+      throw error;
+    }
+  };
 
