@@ -40,15 +40,19 @@ const PessoaList = () => {
               <td className={estilos['pessoa-list__endereco']}>
                 {`${pessoa.endereco.rua}, ${pessoa.endereco.cidade}, ${pessoa.endereco.estado}`}
               </td>
-              <td className={estilos['pessoa-list__contatos']}>
-                {pessoa.contatos.map((contato) => (
-                  <div key={contato.telefone}>{contato.telefone}</div>
-                ))}
+              <td className={estilos['pessoa-list__telefone']}>
+                {pessoa.contatos
+                  .filter((contato) => contato.tipo === 'TELEFONE')
+                  .map((contato) => (
+                    <div key={contato.id}>{contato.valor}</div>
+                  ))}
               </td>
-              <td className={estilos['pessoa-list__contatos']}>
-                {pessoa.contatos.map((contato) => (
-                  <div key={contato.telefone}>{contato.email}</div>
-                ))}
+              <td className={estilos['pessoa-list__email']}>
+                {pessoa.contatos
+                  .filter((contato) => contato.tipo === 'EMAIL')
+                  .map((contato) => (
+                    <div key={contato.id}>{contato.valor}</div>
+                  ))}
               </td>
               <td className={estilos['pessoa-list__cpf']}>{pessoa.cpf}</td>
             </tr>
@@ -60,4 +64,5 @@ const PessoaList = () => {
 };
 
 export default PessoaList;
+
 
