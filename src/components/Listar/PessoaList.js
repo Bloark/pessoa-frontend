@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import estilos from './PessoaList.module.scss';
+import NavBar from '../NavBar/NavBar.js'
 
 const PessoaList = () => {
   const [pessoas, setPessoas] = useState([]);
@@ -19,6 +20,8 @@ const PessoaList = () => {
   }, []);
 
   return (
+    <>
+    <NavBar />
     <div className={estilos['pessoa-list']}>
       <h2 className={estilos['pessoa-list__title']}>Lista de Pessoas</h2>
       <table>
@@ -59,7 +62,8 @@ const PessoaList = () => {
           ))}
         </tbody>
       </table>
-    </div>
+      </div>
+    </>
   );
 };
 

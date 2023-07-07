@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import estilos from './Update.module.scss';
 import Alerta from '../../Alerta/Alerta';
+import NavBar from '../../NavBar/NavBar';
 
 
 const UpdatePessoa = () => {
@@ -116,6 +117,8 @@ const UpdatePessoa = () => {
   };
 
   return (
+    <>
+    <NavBar />    
     <div className={estilos["update-pessoa"]}>
       <h2 className={estilos["update-pessoa__title"]}>Atualizar Pessoa</h2>
       {exibirAlerta && <Alerta tipo={tipoAlerta} mensagem={tipoAlerta === 'sucesso' ? mensagemSucesso : mensagemErro} />}
@@ -206,6 +209,7 @@ const UpdatePessoa = () => {
         <button type="button" onClick={handleDelete} className={estilos["update-pessoa__submit"]}>Deletar</button>
       </form>
     </div>
+    </>
   );
 };
 

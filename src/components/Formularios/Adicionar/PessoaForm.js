@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import estilos from './PessoaForm.module.scss';
 import Alerta from '../../Alerta/Alerta.js';
+import NavBar from '../../NavBar/NavBar.js';
 
 const PessoaForm = () => {
   const [nome, setNome] = useState('');
@@ -61,6 +62,8 @@ const PessoaForm = () => {
   };
 
   return (
+      <>
+      <NavBar/>
     <div className={estilos['pessoa-form']}>
       <h2 className={estilos['pessoa-form__title']}>Adicionar Pessoa</h2>
       {exibirAlertaSucesso && <Alerta tipo="sucesso" mensagem="Adicionado com sucesso" />}
@@ -138,7 +141,8 @@ const PessoaForm = () => {
         </div>
         <button type="submit" className={estilos['pessoa-form__submit']}>Adicionar</button>
       </form>
-    </div>
+      </div>
+      </> 
   );
 };
 
